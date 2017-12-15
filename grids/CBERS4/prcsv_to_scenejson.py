@@ -74,8 +74,27 @@ def center_to_scene_boundaries(center_lat, center_lon,
     llc['lr'] = transform(w_proj, i_proj, x[2], y[2], 0)
     llc['ll'] = transform(w_proj, i_proj, x[3], y[3], 0)
 
+    # Adjust for dateline crossing
+    ref_lon = llc['ul'][0]
+    dateline_crossing = False
+    for coord in llc:
+        if abs(llc[coord][0] - ref_lon) > 10.:
+            # We are crossing the dateline
+            dateline_crossing = True
+    llc_adjusted = dict()        
+    if dateline_crossing:
+        # All longitudes are adjusted to positive values
+        for coord in llc:
+            if llc[coord][0] < 0.:
+                llc_adjusted[coord] = (360. + llc[coord][0], llc[coord][1], llc[coord][2])
+            else:
+                llc_adjusted[coord] = llc[coord]
+    else:
+        llc_adjusted = llc
+    
     # Create output geometry
-    pol = geometry.Polygon([llc['ul'][:2],llc['ur'][:2],llc['lr'][:2],llc['ll'][:2]])
+    pol = geometry.Polygon([llc_adjusted['ul'][:2],llc_adjusted['ur'][:2],
+                            llc_adjusted['lr'][:2],llc_adjusted['ll'][:2]])
    
     return pol
     
@@ -116,9 +135,10 @@ def csv_to_json(csv_file, start_row=1, end_row=400, start_path=1, end_path=373):
             pol = center_to_scene_boundaries(center_lat, center_lon,
                                              previous_center_lat,
                                              previous_center_lon)
-            feature = geojson.Feature(geometry=pol,
-                                      properties={"PATH":path, "ROW":row})
-            features.append(feature)
+            if pol:
+                feature = geojson.Feature(geometry=pol,
+                                          properties={"PATH":path, "ROW":row})
+                features.append(feature)
 
     fc = geojson.FeatureCollection(features)
     print geojson.dumps(fc)
