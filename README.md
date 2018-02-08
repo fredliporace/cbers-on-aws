@@ -35,9 +35,14 @@ The data are organized using a directory identical to the one shown above, the d
 - Large quicklook: s3://cbers-meta-pds/CBERS4/MUX/157/133/CBERS_4_MUX_20150607_157_133_L4/CBERS_4_MUX_20150607_157_133.jpg
 - Small quicklook: s3://cbers-meta-pds/CBERS4/MUX/157/133/CBERS_4_MUX_20150607_157_133_L4/CBERS_4_MUX_20150607_157_133_small.jpeg
 
-This bucket also provides a gzipped files describing all scenes at its root level.
+This bucket also provides two files describing all scenes at its root level, in gzipped and plain format:
 
-s3://cbers-meta-pds/scene_list.gz or https://s3.amazonaws.com/cbers-meta-pds/scene_list.gz
+- s3://cbers-meta-pds/scene_list.csv.gz or https://s3.amazonaws.com/cbers-meta-pds/scene_list.csv.gz
+- s3://cbers-meta-pds/scene_list.csv or https://s3.amazonaws.com/cbers-meta-pds/scene_list.csv
+
+The plain csv file does not include a first line with the column ids.
+
+
 
 
 
