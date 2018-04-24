@@ -8,7 +8,7 @@ Information about the CBERS program is available from INPE's site http://www.cbe
 
 Entry in Open Data on AWS is https://registry.opendata.aws/cbers/.
 
-All CBERS-4 MUX scenes are available from the start of the CBERS-4 mission.
+All CBERS-4 MUX scenes are available from the beginning of the CBERS-4 mission.
 
 Scenes from AWFI, PAN5 and PAN10 cameras are being experimentally ingested, the archive for these cameras is incomplete.
 
