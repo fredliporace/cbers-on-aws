@@ -10,9 +10,9 @@ Entry in Open Data on AWS is https://registry.opendata.aws/cbers/.
 
 All CBERS-4 MUX scenes are available from the beginning of the CBERS-4 mission.
 
-Scenes from AWFI, PAN5 and PAN10 cameras are being experimentally ingested, the archive for these cameras is incomplete.
+Scenes from AWFI, PAN5 and PAN10 acquired from June/2018 are ingested daily. The complete archive for these cameras will be ingested no later than Sep/2018.
 
-New MUX images are pulled daily from INPE's catalog at http://www.dgi.inpe.br/catalogo/ and are converted to Cloud Optimized Geotiff format.
+The images are pulled daily from INPE's catalog at http://www.dgi.inpe.br/catalogo/ and are converted to Cloud Optimized Geotiff format.
 
 The data is organized in two s3 buckets, both located in the us-east-1 region.
 
